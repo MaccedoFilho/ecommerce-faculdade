@@ -1,0 +1,73 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #fff;
+}
+
+/* navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    color: #333;
+    padding: 1rem 5%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.logo-icon {
+    color: #9c27b0;
+    margin-right: 8px;
+    letter-spacing: -3px;
+    font-size: 1.5rem;
+}
+
+.menu {
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+.menu li {
+    margin-left: 2rem;
+}
+
+.menu a {
+    color: #333;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    padding: 0.5rem 0;
+}
+
+.sign-in {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 3px;
+}
+
+.cart-icon {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+}
+
+.cart-icon::before {
+    margin-right: 5px;
+}

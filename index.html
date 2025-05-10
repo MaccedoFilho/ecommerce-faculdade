@@ -9,76 +9,127 @@
 <body>
     <header>
         <nav class="navbar">
-            <div class="logo">HypeWear</div>
+            <div class="logo">
+                <span class="logo-icon">●●</span>
+                HypeWear
+            </div>
             <ul class="menu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#produtos">Produtos</a></li>
-                <li><a href="#carrinho">Carrinho</a></li>
-                <li><a href="#contato">Contato</a></li>
+                <li><a href="#explore">Explore</a></li>
+                <li><a href="#signin" class="sign-in">Sign In</a></li>
+                <li><a href="#cart" class="cart-icon">cart</a></li>
             </ul>
         </nav>
     </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="tag">NOSSA ARTE VEM DA RUA</div>
+            
+            <h1 class="hero-title">Descubra o novo lar<br>para o seu estilo</h1>
+            
+            <p class="hero-subtitle">
+                Tenha acesso exclusivo às melhores peças<br>
+                de roupa no seu site de moda com<br>
+                HypeWear
+            </p>
+            
+            <div class="search-container">
+                <input type="text" placeholder="Buscar" class="search-input">
+                <button class="search-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="categories">
+                <button class="category-btn active">Todos</button>
+                <button class="category-btn">Destaques</button>
+                <button class="category-btn">Camisetas</button>
+                <button class="category-btn">Casacos</button>
+            </div>
+        </div>
+    </section>
+
     <main>
-        <section class="produtos">   
-            <div class="produto">
-                <img src="https://via.placeholder.com/200" alt="Produto 1">
-                <h3>Produto 1</h3>
-                <p>R$ 99,99</p>
-                <button>Adicionar ao Carrinho</button>
-            </div>
-            <div class="produto">
-                <img src="https://via.placeholder.com/200" alt="Produto 2">
-                <h3>Produto 2</h3>
-                <p>R$ 149,99</p>
-                <button>Adicionar ao Carrinho</button>
-            </div>
-            <div class="produto">
-                <img src="https://via.placeholder.com/200" alt="Produto 3">
-                <h3>Produto 3</h3>
-                <p>R$ 199,99</p>
-                <button>Adicionar ao Carrinho</button>
-            </div>
-            <div class="produto">
-                <img src="https://via.placeholder.com/200" alt="Produto 4">
-                <h3>Produto 4</h3>
-                <p>R$ 79,99</p>
-                <button>Adicionar ao Carrinho</button>
-            </div>
-            <div class="produto">
-                <img src="https://via.placeholder.com/200" alt="Produto 5">
-                <h3>Produto 5</h3>
-                <p>R$ 129,99</p>
-                <button>Adicionar ao Carrinho</button>
-            </div>
-            <div class="produto">
-                <img src="https://via.placeholder.com/200" alt="Produto 6">
-                <h3>Produto 6</h3>
-                <p>R$ 169,99</p>
-                <button>Adicionar ao Carrinho</button>
-            </div>
-            <div class="produto">
-                <img src="https://via.placeholder.com/200" alt="Produto 7">
-                <h3>Produto 7</h3>
-                <p>R$ 89,99</p>
-                <button>Adicionar ao Carrinho</button>
-            </div>
-            <div class="produto">
-                <img src="https://via.placeholder.com/200" alt="Produto 8">
-                <h3>Produto 8</h3>
-                <p>R$ 139,99</p>
-                <button>Adicionar ao Carrinho</button>
-            </div>
-            <div class="produto">
-                <img src="https://via.placeholder.com/200" alt="Produto 9">
-                <h3>Produto 9</h3>
-                <p>R$ 189,99</p>
-                <button>Adicionar ao Carrinho</button>
-            </div>
-        <section class="carrinho">
-            <h2>Seu Carrinho</h2>
-            <p>Nenhum item no carrinho</p>
+        <section class="produtos">
+            <div class="produtos-grid">
+                <div class="produto-card">
+                    <div class="produto-img"></div>
+                    <h3 class="produto-nome">Camiseta Class</h3>
+                    <p class="produto-preco">R$ 160,99</p>
+                </div>
+                
+                <div class="produto-card">
+                    <div class="produto-img"></div>
+                    <h3 class="produto-nome">Camiseta Class</h3>
+                    <p class="produto-preco">R$ 99,99</p>
+                </div>
+                
+                <div class="produto-card">
+                    <div class="produto-img"></div>
+                    <h3 class="produto-nome">Camiseta Class</h3>
+                    <p class="produto-preco">R$ 36,00</p>
+                </div>
+                
+                <div class="produto-card">
+                    <div class="produto-img"></div>
+                    <h3 class="produto-nome">Camiseta Street</h3>
+                    <p class="produto-preco">R$ 120,00</p>
+                </div>
+                
+                <div class="produto-card">
+                    <div class="produto-img"></div>
+                    <h3 class="produto-nome">Casaco Urban</h3>
+                    <p class="produto-preco">R$ 259,99</p>
+                </div>
+                
+                <div class="produto-card">
+                    <div class="produto-img"></div>
+                    <h3 class="produto-nome">Camiseta Graffiti</h3>
+                    <p class="produto-preco">R$ 89,90</p>
+                </div>
+                
+                <div class="produto-card">
+                    <div class="produto-img"></div>
+                    <h3 class="produto-nome">Moletom Skate</h3>
+                    <p class="produto-preco">R$ 179,90</p>
+                </div>
+                
+                <div class="produto-card">
+                    <div class="produto-img"></div>
+                    <h3 class="produto-nome">Camiseta Vintage</h3>
+                    <p class="produto-preco">R$ 69,90</p>
+                </div>
         </section>
     </main>
+
+    <section class="newsletter">
+        <div class="newsletter-container">
+            <div class="newsletter-info">
+                <div class="logo">
+                    <span class="logo-icon">●●</span>
+                    HypeWear
+                </div>
+                <h3 class="newsletter-tagline">"Seu drip, sua regra"</h3>
+                <p class="newsletter-text">
+                    Chega mais, aqui é o pico onde o estilo fala mais alto. Se liga: streetwear 
+                    pesado, aquele outfit que bate diferente e os kicks que dão o papo reto no 
+                    rolê.
+                </p>
+            </div>
+            
+            <div class="newsletter-form">
+                <h3>Saiba tudo antes, entre na cena!</h3>
+                <p>Se liga nas peças novas antes de todo mundo! Recebe os drops mais pesados direto no seu e-mail.</p>
+                
+                <form>
+                    <input type="email" placeholder="Email Address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
     <footer>
         <p>&copy; 2024 HypeWear. Todos os direitos reservados.</p>
     </footer>
