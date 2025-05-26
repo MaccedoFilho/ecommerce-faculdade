@@ -312,3 +312,50 @@ footer {
     padding: 1rem;
     margin-top: 2rem;
 }
+
+.social-login {
+    margin: 1.5rem auto;
+    text-align: center;
+}
+
+.social-login p {
+    margin-bottom: 0.8rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.social-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    padding: 0.6rem 1.2rem;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 30px;
+    text-decoration: none;
+    color: #333;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.social-btn img {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+}
+
+.google-btn:hover {
+    background-color: #f1f1f1;
+    border-color: #4285F4;
+}
+
+.facebook-btn:hover {
+    background-color: #f1f1f1;
+    border-color: #3b5998;
+}
