@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - HypeWear</title>
+    <title>Cadastro - HypeWear</title>
     <style>
         * {
             margin: 0;
@@ -66,16 +66,16 @@
             color: #9c27b0;
         }
         
-        .login-container {
-            max-width: 400px;
-            margin: 5rem auto;
+        .register-container {
+            max-width: 450px;
+            margin: 3rem auto;
             padding: 2rem;
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
-        .login-title {
+        .register-title {
             text-align: center;
             margin-bottom: 2rem;
             color: #333;
@@ -86,6 +86,15 @@
             margin-bottom: 1.5rem;
         }
         
+        .form-row {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
         label {
             display: block;
             margin-bottom: 0.5rem;
@@ -93,8 +102,10 @@
             color: #555;
         }
         
+        input[type="text"],
         input[type="email"],
-        input[type="password"] {
+        input[type="password"],
+        input[type="tel"] {
             width: 100%;
             padding: 0.8rem 1rem;
             border: 1px solid #ddd;
@@ -103,29 +114,41 @@
             transition: border 0.3s ease;
         }
         
+        input[type="text"]:focus,
         input[type="email"]:focus,
-        input[type="password"]:focus {
+        input[type="password"]:focus,
+        input[type="tel"]:focus {
             outline: none;
             border-color: #9c27b0;
         }
         
-        .forgot-password {
-            text-align: right;
-            margin-top: -0.5rem;
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
             margin-bottom: 1.5rem;
         }
         
-        .forgot-password a {
-            color: #777;
-            text-decoration: none;
+        .checkbox-group input[type="checkbox"] {
+            margin-top: 0.2rem;
+        }
+        
+        .checkbox-group label {
             font-size: 0.9rem;
+            line-height: 1.4;
+            margin-bottom: 0;
         }
         
-        .forgot-password a:hover {
+        .checkbox-group a {
             color: #9c27b0;
+            text-decoration: none;
         }
         
-        .login-btn {
+        .checkbox-group a:hover {
+            text-decoration: underline;
+        }
+        
+        .register-btn {
             width: 100%;
             background-color: #9c27b0;
             color: #fff;
@@ -138,7 +161,7 @@
             transition: background-color 0.3s;
         }
         
-        .login-btn:hover {
+        .register-btn:hover {
             background-color: #7b1fa2;
         }
         
@@ -197,19 +220,19 @@
             flex-shrink: 0;
         }
         
-        .register-link {
+        .login-link {
             text-align: center;
             margin-top: 2rem;
             font-size: 0.9rem;
         }
         
-        .register-link a {
+        .login-link a {
             color: #9c27b0;
             text-decoration: none;
             font-weight: 500;
         }
         
-        .register-link a:hover {
+        .login-link a:hover {
             text-decoration: underline;
         }
     </style>
@@ -230,12 +253,28 @@
     </header>
     
     <main>
-        <div class="login-container">
-            <h2 class="login-title">Login</h2>
+        <div class="register-container">
+            <h2 class="register-title">Criar Conta</h2>
             <form action="#" method="post">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">Nome</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Sobrenome</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+                
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Telefone</label>
+                    <input type="tel" id="phone" name="phone" placeholder="(11) 99999-9999">
                 </div>
                 
                 <div class="form-group">
@@ -243,14 +282,29 @@
                     <input type="password" id="password" name="password" required>
                 </div>
                 
-                <div class="forgot-password">
-                    <a href="#">Esqueceu a senha?</a>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirmar Senha</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
                 </div>
                 
-                <button type="submit" class="login-btn">Entrar</button>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">
+                        Eu aceito os <a href="#">Termos de Uso</a> e a <a href="#">Política de Privacidade</a>
+                    </label>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="newsletter" name="newsletter">
+                    <label for="newsletter">
+                        Quero receber ofertas e novidades por email
+                    </label>
+                </div>
+                
+                <button type="submit" class="register-btn">Criar Conta</button>
                 
                 <div class="social-login">
-                    <p>Ou entre com:</p>
+                    <p>Ou cadastre-se com:</p>
                     <div class="social-buttons">
                         <a href="#" class="social-btn google-btn">
                             <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
@@ -272,8 +326,8 @@
                     </div>
                 </div>
                 
-                <div class="register-link">
-                    Não tem uma conta? <a href="register.html">Cadastre-se</a>
+                <div class="login-link">
+                    Já tem uma conta? <a href="login.html">Faça login</a>
                 </div>
             </form>
         </div>

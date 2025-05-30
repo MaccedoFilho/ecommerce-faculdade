@@ -129,7 +129,7 @@
         
         .cart-item {
             display: grid;
-            grid-template-columns: 100px 1fr auto;
+            grid-template-columns: 180px 1fr auto;
             gap: 1.5rem;
             padding: 1.5rem 0;
             border-bottom: 1px solid #eee;
@@ -140,8 +140,8 @@
         }
         
         .item-image {
-            width: 100px;
-            height: 100px;
+            width: 180px;
+            height: 180px;
             border-radius: 5px;
             overflow: hidden;
         }
@@ -202,19 +202,141 @@
             align-self: flex-start;
         }
         
-        .cart-summary {
+        .cart-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .cart-summary, .shipping-section, .payment-section {
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 3px 10px rgba(0,0,0,0.08);
             padding: 1.5rem;
-            height: fit-content;
         }
         
-        .summary-title {
+        .section-title {
             font-size: 1.2rem;
             margin-bottom: 1.5rem;
             padding-bottom: 1rem;
             border-bottom: 1px solid #eee;
+        }
+        
+        .shipping-form {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cep-input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .cep-btn {
+            background-color: #9c27b0;
+            color: #fff;
+            border: none;
+            padding: 0.8rem 1.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+        }
+        
+        .cep-btn:hover {
+            background-color: #7b1fa2;
+        }
+        
+        .shipping-options {
+            margin-top: 1rem;
+        }
+        
+        .shipping-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .shipping-option:hover {
+            border-color: #9c27b0;
+            background-color: #f9f9f9;
+        }
+        
+        .shipping-option input[type="radio"] {
+            margin-right: 0.8rem;
+        }
+        
+        .shipping-info {
+            flex: 1;
+        }
+        
+        .shipping-name {
+            font-weight: 500;
+            margin-bottom: 0.2rem;
+        }
+        
+        .shipping-time {
+            font-size: 0.8rem;
+            color: #777;
+        }
+        
+        .shipping-price {
+            font-weight: 500;
+            color: #9c27b0;
+        }
+        
+        .payment-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        
+        .payment-method {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .payment-method:hover {
+            border-color: #9c27b0;
+        }
+        
+        .payment-method input[type="radio"] {
+            margin-right: 0.8rem;
+        }
+        
+        .payment-info {
+            flex: 1;
+        }
+        
+        .payment-name {
+            font-weight: 500;
+            margin-bottom: 0.2rem;
+        }
+        
+        .payment-desc {
+            font-size: 0.8rem;
+            color: #777;
+        }
+        
+        .payment-discount {
+            color: #4caf50;
+            font-size: 0.8rem;
+            font-weight: 500;
         }
         
         .summary-row {
@@ -249,7 +371,6 @@
             background-color: #7b1fa2;
         }
         
-        /* Responsividade */
         @media (max-width: 768px) {
             .cart-grid {
                 grid-template-columns: 1fr;
@@ -262,6 +383,19 @@
             .item-remove {
                 grid-column: 2;
                 justify-self: end;
+            }
+            
+            .shipping-form {
+                flex-direction: column;
+            }
+            
+            .payment-method {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .payment-icon {
+                margin-bottom: 0.5rem;
             }
         }
     </style>
@@ -296,7 +430,7 @@
                     <!-- item de exemplo -->
                     <div class="cart-item">
                         <div class="item-image">
-                            <img src="../images/class_agdb.webp" alt="Camiseta Class" onerror="this.src='https://via.placeholder.com/100x100/9c27b0/ffffff?text=HypeWear'">
+                            <img src="../images/class_agdb.webp" alt="Camiseta Class" onerror="this.src='https://via.placeholder.com/180x180/9c27b0/ffffff?text=HypeWear'">
                         </div>
                         <div class="item-details">
                             <h3>Camiseta Class</h3>
@@ -314,7 +448,7 @@
                     <!-- outro item de exemplo -->
                     <div class="cart-item">
                         <div class="item-image">
-                            <img src="../images/moletom_sufgang.webp" alt="Casaco Sufgang" onerror="this.src='https://via.placeholder.com/100x100/9c27b0/ffffff?text=HypeWear'">
+                            <img src="../images/moletom_sufgang.webp" alt="Casaco Sufgang" onerror="this.src='https://via.placeholder.com/180x180/9c27b0/ffffff?text=HypeWear'">
                         </div>
                         <div class="item-details">
                             <h3>Casaco Sufgang</h3>
@@ -328,27 +462,90 @@
                         </div>
                         <div class="item-remove">✕</div>
                     </div>
+                    
+                    <!-- terceiro item -->
+                    <div class="cart-item">
+                        <div class="item-image">
+                            <img src="../images/camiseta_stussy.webp" alt="Camiseta Stussy" onerror="this.src='https://via.placeholder.com/180x180/9c27b0/ffffff?text=HypeWear'">
+                        </div>
+                        <div class="item-details">
+                            <h3>Camiseta Stussy</h3>
+                            <p class="item-size">Tamanho: P</p>
+                            <p class="item-price">R$ 159,90</p>
+                            <div class="item-quantity">
+                                <button class="quantity-btn">-</button>
+                                <input type="number" class="quantity-input" value="1" min="1" max="10">
+                                <button class="quantity-btn">+</button>
+                            </div>
+                        </div>
+                        <div class="item-remove">✕</div>
+                    </div>
                 </div>
                 
-                <div class="cart-summary">
-                    <h2 class="summary-title">Resumo do Pedido</h2>
-                    
-                    <div class="summary-row">
-                        <span>Subtotal</span>
-                        <span>R$ 559,89</span>
+                <div class="cart-sidebar">
+                    <div class="shipping-section">
+                        <h2 class="section-title">Calcular Frete</h2>
+                        <div class="shipping-form">
+                            <input type="text" class="cep-input" placeholder="Digite seu CEP" maxlength="9">
+                            <button class="cep-btn">Calcular</button>
+                        </div>
                     </div>
                     
-                    <div class="summary-row">
-                        <span>Frete</span>
-                        <span>R$ 0,00</span>
+                    <div class="payment-section">
+                        <h2 class="section-title">Forma de Pagamento</h2>
+                        <div class="payment-methods">
+                            <div class="payment-method">
+                                <input type="radio" name="payment" id="pix" value="pix">
+                                <div class="payment-info">
+                                    <div class="payment-name">PIX</div>
+                                    <div class="payment-desc">Pagamento instantâneo</div>
+                                    <div class="payment-discount">5% de desconto</div>
+                                </div>
+                            </div>
+                            
+                            <div class="payment-method">
+                                <input type="radio" name="payment" id="credit" value="credit">
+                                <div class="payment-info">
+                                    <div class="payment-name">Cartão de Crédito</div>
+                                    <div class="payment-desc">Parcelamento em até 12x</div>
+                                </div>
+                            </div>
+                            
+                            <div class="payment-method">
+                                <input type="radio" name="payment" id="paypal" value="paypal">
+                                <div class="payment-info">
+                                    <div class="payment-name">PayPal</div>
+                                    <div class="payment-desc">Pagamento seguro internacional</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     
-                    <div class="summary-row total">
-                        <span>Total</span>
-                        <span>R$ 559,89</span>
+                    <div class="cart-summary">
+                        <h2 class="section-title">Resumo do Pedido</h2>
+                        
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span>R$ 719,79</span>
+                        </div>
+                        
+                        <div class="summary-row">
+                            <span>Frete</span>
+                            <span>R$ 0,00</span>
+                        </div>
+                        
+                        <div class="summary-row">
+                            <span>Desconto PIX</span>
+                            <span>- R$ 0,00</span>
+                        </div>
+                        
+                        <div class="summary-row total">
+                            <span>Total</span>
+                            <span>R$ 719,79</span>
+                        </div>
+                        
+                        <button class="checkout-btn">Finalizar Compra</button>
                     </div>
-                    
-                    <button class="checkout-btn">Finalizar Compra</button>
                 </div>
             </div>
         </div>
