@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - HypeWear</title>
+    <title>Cadastro - HypeWear</title>
     <style>
         * {
             margin: 0;
@@ -66,7 +66,7 @@
             color: #9c27b0;
         }
         
-        .login-container {
+        .register-container {
             max-width: 400px;
             margin: 5rem auto;
             padding: 2rem;
@@ -75,7 +75,7 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
-        .login-title {
+        .register-title {
             text-align: center;
             margin-bottom: 2rem;
             color: #333;
@@ -93,6 +93,7 @@
             color: #555;
         }
         
+        input[type="text"],
         input[type="email"],
         input[type="password"] {
             width: 100%;
@@ -103,29 +104,14 @@
             transition: border 0.3s ease;
         }
         
+        input[type="text"]:focus,
         input[type="email"]:focus,
         input[type="password"]:focus {
             outline: none;
             border-color: #9c27b0;
         }
         
-        .forgot-password {
-            text-align: right;
-            margin-top: -0.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .forgot-password a {
-            color: #777;
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-        
-        .forgot-password a:hover {
-            color: #9c27b0;
-        }
-        
-        .login-btn {
+        .register-btn {
             width: 100%;
             background-color: #9c27b0;
             color: #fff;
@@ -136,9 +122,10 @@
             font-weight: 500;
             cursor: pointer;
             transition: background-color 0.3s;
+            margin-top: 1rem;
         }
         
-        .login-btn:hover {
+        .register-btn:hover {
             background-color: #7b1fa2;
         }
         
@@ -197,19 +184,19 @@
             flex-shrink: 0;
         }
         
-        .register-link {
+        .login-link {
             text-align: center;
             margin-top: 2rem;
             font-size: 0.9rem;
         }
         
-        .register-link a {
+        .login-link a {
             color: #9c27b0;
             text-decoration: none;
             font-weight: 500;
         }
         
-        .register-link a:hover {
+        .login-link a:hover {
             text-decoration: underline;
         }
     </style>
@@ -230,9 +217,14 @@
     </header>
     
     <main>
-        <div class="login-container">
-            <h2 class="login-title">Login</h2>
+        <div class="register-container">
+            <h2 class="register-title">Cadastro</h2>
             <form action="#" method="post">
+                <div class="form-group">
+                    <label for="name">Nome Completo</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" required>
@@ -243,14 +235,15 @@
                     <input type="password" id="password" name="password" required>
                 </div>
                 
-                <div class="forgot-password">
-                    <a href="#">Esqueceu a senha?</a>
+                <div class="form-group">
+                    <label for="confirm-password">Confirmar Senha</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required>
                 </div>
                 
-                <button type="submit" class="login-btn">Entrar</button>
+                <button type="submit" class="register-btn">Cadastrar</button>
                 
                 <div class="social-login">
-                    <p>Ou entre com:</p>
+                    <p>Ou cadastre-se com:</p>
                     <div class="social-buttons">
                         <a href="#" class="social-btn google-btn">
                             <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
@@ -272,8 +265,8 @@
                     </div>
                 </div>
                 
-                <div class="register-link">
-                    Não tem uma conta? <a href="register.html">Cadastre-se</a>
+                <div class="login-link">
+                    Já tem uma conta? <a href="login.html">Faça login</a>
                 </div>
             </form>
         </div>
