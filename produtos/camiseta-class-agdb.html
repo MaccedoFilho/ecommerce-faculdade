@@ -39,18 +39,51 @@
                 <div>
                     <h3>Tamanho</h3>
                     <div class="tamanhos">
-                        <button class="tamanho-btn">P</button>
-                        <button class="tamanho-btn active">M</button>
-                        <button class="tamanho-btn">G</button>
-                        <button class="tamanho-btn">GG</button>
+                        <button class="tamanho-btn" data-tamanho="P">P</button>
+                        <button class="tamanho-btn active" data-tamanho="M">M</button>
+                        <button class="tamanho-btn" data-tamanho="G">G</button>
+                        <button class="tamanho-btn" data-tamanho="GG">GG</button>
                     </div>
                 </div>
                 
-                <button class="adicionar-carrinho">Adicionar ao Carrinho</button>
+                <button class="adicionar-carrinho" id="btnAdicionarCarrinho">Adicionar ao Carrinho</button>
                 
                 <a href="../index.html" class="voltar-link">← Voltar para a loja</a>
             </div>
         </div>
     </main>
+
+    <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const botoesTamanho = document.querySelectorAll('.tamanho-btn');
+            const btnAdicionarCarrinho = document.getElementById('btnAdicionarCarrinho');
+            
+            let tamanhoSelecionado = 'M';
+            
+            botoesTamanho.forEach(botao => {
+                botao.addEventListener('click', function() {
+                    botoesTamanho.forEach(b => b.classList.remove('active'));
+                    
+                    this.classList.add('active');
+                    
+                    tamanhoSelecionado = this.dataset.tamanho;
+                });
+            });
+            
+            btnAdicionarCarrinho.addEventListener('click', function() {
+                const produto = {
+                    id: 'camiseta-class-agdb',
+                    nome: 'Camiseta Class AGDB',
+                    preco: 199.90,
+                    imagem: '../images/class_agdb.webp',
+                    tamanho: tamanhoSelecionado,
+                    quantidade: 1
+                };
+                
+                window.adicionarAoCarrinho(produto);
+            });
+        });
+    </script>
 </body>
 </html> 

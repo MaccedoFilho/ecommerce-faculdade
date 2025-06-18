@@ -84,12 +84,28 @@
         
         .cart-empty {
             text-align: center;
-            display: none; 
+            display: block;
+            padding: 3rem;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         .cart-empty-icon {
             font-size: 4rem;
-            color: #ddd;
+            color: #9c27b0;
             margin-bottom: 1rem;
         }
         
@@ -118,6 +134,7 @@
             display: grid;
             grid-template-columns: 2fr 1fr;
             gap: 2rem;
+            display: none;
         }
         
         .cart-items {
@@ -419,67 +436,14 @@
         <div class="container">
             <h1 class="page-title">Seu Carrinho</h1>
             
-            <div class="cart-empty">
+            <div class="cart-empty" id="cartEmpty">
                 <div class="cart-empty-icon">🛒</div>
                 <p class="cart-empty-text">Seu carrinho está vazio</p>
                 <a href="../index.html" class="shop-btn">Continuar comprando</a>
             </div>
             
-            <div class="cart-grid">
-                <div class="cart-items">
-                    <!-- item de exemplo -->
-                    <div class="cart-item">
-                        <div class="item-image">
-                            <img src="../images/class_agdb.webp" alt="Camiseta Class" onerror="this.src='https://via.placeholder.com/180x180/9c27b0/ffffff?text=HypeWear'">
-                        </div>
-                        <div class="item-details">
-                            <h3>Camiseta Class</h3>
-                            <p class="item-size">Tamanho: M</p>
-                            <p class="item-price">R$ 199,90</p>
-                            <div class="item-quantity">
-                                <button class="quantity-btn">-</button>
-                                <input type="number" class="quantity-input" value="1" min="1" max="10">
-                                <button class="quantity-btn">+</button>
-                            </div>
-                        </div>
-                        <div class="item-remove">✕</div>
-                    </div>
-                    
-                    <!-- outro item de exemplo -->
-                    <div class="cart-item">
-                        <div class="item-image">
-                            <img src="../images/moletom_sufgang.webp" alt="Casaco Sufgang" onerror="this.src='https://via.placeholder.com/180x180/9c27b0/ffffff?text=HypeWear'">
-                        </div>
-                        <div class="item-details">
-                            <h3>Casaco Sufgang</h3>
-                            <p class="item-size">Tamanho: G</p>
-                            <p class="item-price">R$ 359,99</p>
-                            <div class="item-quantity">
-                                <button class="quantity-btn">-</button>
-                                <input type="number" class="quantity-input" value="1" min="1" max="10">
-                                <button class="quantity-btn">+</button>
-                            </div>
-                        </div>
-                        <div class="item-remove">✕</div>
-                    </div>
-                    
-                    <!-- terceiro item -->
-                    <div class="cart-item">
-                        <div class="item-image">
-                            <img src="../images/camiseta_stussy.webp" alt="Camiseta Stussy" onerror="this.src='https://via.placeholder.com/180x180/9c27b0/ffffff?text=HypeWear'">
-                        </div>
-                        <div class="item-details">
-                            <h3>Camiseta Stussy</h3>
-                            <p class="item-size">Tamanho: P</p>
-                            <p class="item-price">R$ 159,90</p>
-                            <div class="item-quantity">
-                                <button class="quantity-btn">-</button>
-                                <input type="number" class="quantity-input" value="1" min="1" max="10">
-                                <button class="quantity-btn">+</button>
-                            </div>
-                        </div>
-                        <div class="item-remove">✕</div>
-                    </div>
+            <div class="cart-grid" id="cartGrid">
+                <div class="cart-items" id="cartItems">
                 </div>
                 
                 <div class="cart-sidebar">
@@ -504,7 +468,7 @@
                             </div>
                             
                             <div class="payment-method">
-                                <input type="radio" name="payment" id="credit" value="credit">
+                                <input type="radio" name="payment" id="credit" value="credit" checked>
                                 <div class="payment-info">
                                     <div class="payment-name">Cartão de Crédito</div>
                                     <div class="payment-desc">Parcelamento em até 12x</div>
@@ -526,29 +490,208 @@
                         
                         <div class="summary-row">
                             <span>Subtotal</span>
-                            <span>R$ 719,79</span>
+                            <span id="subtotalValue">R$ 0,00</span>
                         </div>
                         
                         <div class="summary-row">
                             <span>Frete</span>
-                            <span>R$ 0,00</span>
+                            <span id="freteValue">R$ 0,00</span>
                         </div>
                         
                         <div class="summary-row">
                             <span>Desconto PIX</span>
-                            <span>- R$ 0,00</span>
+                            <span id="descontoValue">- R$ 0,00</span>
                         </div>
                         
                         <div class="summary-row total">
                             <span>Total</span>
-                            <span>R$ 719,79</span>
+                            <span id="totalValue">R$ 0,00</span>
                         </div>
                         
-                        <button class="checkout-btn">Finalizar Compra</button>
+                        <button class="checkout-btn" id="checkoutBtn">Finalizar Compra</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <script src="../script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cartEmpty = document.getElementById('cartEmpty');
+            const cartGrid = document.getElementById('cartGrid');
+            const cartItems = document.getElementById('cartItems');
+            const subtotalValue = document.getElementById('subtotalValue');
+            const freteValue = document.getElementById('freteValue');
+            const descontoValue = document.getElementById('descontoValue');
+            const totalValue = document.getElementById('totalValue');
+            const checkoutBtn = document.getElementById('checkoutBtn');
+            const paymentMethods = document.querySelectorAll('input[name="payment"]');
+            
+            function carregarCarrinho() {
+                const carrinho = JSON.parse(localStorage.getItem('carrinhoHypeWear')) || [];
+                
+                if (carrinho.length === 0) {            
+                    cartEmpty.style.display = 'block';
+                    cartGrid.style.display = 'none';
+                } else {
+                    cartEmpty.style.display = 'none';
+                    cartGrid.style.display = 'grid';
+                    
+                            cartItems.innerHTML = '';
+                    
+                    carrinho.forEach(item => {
+                        const itemElement = document.createElement('div');
+                        itemElement.className = 'cart-item';
+                        itemElement.dataset.id = item.id;
+                        itemElement.dataset.tamanho = item.tamanho;
+                        
+                        itemElement.innerHTML = `
+                            <div class="item-image">
+                                <img src="${item.imagem}" alt="${item.nome}" onerror="this.src='https://via.placeholder.com/180x180/9c27b0/ffffff?text=HypeWear'">
+                            </div>
+                            <div class="item-details">
+                                <h3>${item.nome}</h3>
+                                <p class="item-size">Tamanho: ${item.tamanho}</p>
+                                <p class="item-price">R$ ${item.preco.toFixed(2)}</p>
+                                <div class="item-quantity">
+                                    <button class="quantity-btn decrease">-</button>
+                                    <input type="number" class="quantity-input" value="${item.quantidade}" min="1" max="10">
+                                    <button class="quantity-btn increase">+</button>
+                                </div>
+                            </div>
+                            <div class="item-remove">✕</div>
+                        `;
+                        
+                        cartItems.appendChild(itemElement);
+                    });
+
+                    adicionarEventos();
+                    
+                    atualizarResumo();
+                }
+            }
+            
+            function adicionarEventos() {
+                document.querySelectorAll('.quantity-btn.increase').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const input = this.parentElement.querySelector('.quantity-input');
+                        const item = this.closest('.cart-item');
+                        const id = item.dataset.id;
+                        const tamanho = item.dataset.tamanho;
+                        
+                        if (parseInt(input.value) < 10) {
+                            input.value = parseInt(input.value) + 1;
+                            atualizarQuantidade(id, tamanho, parseInt(input.value));
+                        }
+                    });
+                });
+                
+                document.querySelectorAll('.quantity-btn.decrease').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const input = this.parentElement.querySelector('.quantity-input');
+                        const item = this.closest('.cart-item');
+                        const id = item.dataset.id;
+                        const tamanho = item.dataset.tamanho;
+                        
+                        if (parseInt(input.value) > 1) {
+                            input.value = parseInt(input.value) - 1;
+                            atualizarQuantidade(id, tamanho, parseInt(input.value));
+                        }
+                    });
+                });
+                
+                document.querySelectorAll('.quantity-input').forEach(input => {
+                    input.addEventListener('change', function() {
+                        const item = this.closest('.cart-item');
+                        const id = item.dataset.id;
+                        const tamanho = item.dataset.tamanho;
+                        let valor = parseInt(this.value);
+                        
+                        if (isNaN(valor) || valor < 1) valor = 1;
+                        if (valor > 10) valor = 10;
+                        
+                        this.value = valor;
+                        atualizarQuantidade(id, tamanho, valor);
+                    });
+                });
+                
+                document.querySelectorAll('.item-remove').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const item = this.closest('.cart-item');
+                        const id = item.dataset.id;
+                        const tamanho = item.dataset.tamanho;
+                        
+                        removerItem(id, tamanho);
+                    });
+                });
+            }
+            
+            function atualizarQuantidade(id, tamanho, quantidade) {
+                if (typeof window.atualizarQuantidadeCarrinho === 'function') {
+                    window.atualizarQuantidadeCarrinho(id, tamanho, quantidade);
+                } else {
+                    let carrinho = JSON.parse(localStorage.getItem('carrinhoHypeWear')) || [];
+                    
+                    carrinho = carrinho.map(item => {
+                        if (item.id === id && item.tamanho === tamanho) {
+                            item.quantidade = quantidade;
+                        }
+                        return item;
+                    });
+                    
+                    localStorage.setItem('carrinhoHypeWear', JSON.stringify(carrinho));
+                }
+                
+                atualizarResumo();
+            }
+            
+            function removerItem(id, tamanho) {
+                if (typeof window.removerDoCarrinho === 'function') {
+                    window.removerDoCarrinho(id, tamanho);
+                } else {                
+                    let carrinho = JSON.parse(localStorage.getItem('carrinhoHypeWear')) || [];
+                    carrinho = carrinho.filter(item => !(item.id === id && item.tamanho === tamanho));
+                    localStorage.setItem('carrinhoHypeWear', JSON.stringify(carrinho));
+                }
+                
+                carregarCarrinho();
+            }
+            
+            function atualizarResumo() {
+                const carrinho = JSON.parse(localStorage.getItem('carrinhoHypeWear')) || [];
+                const subtotal = carrinho.reduce((total, item) => total + (item.preco * item.quantidade), 0);
+                const frete = 0;
+                const descontoPix = document.getElementById('pix').checked ? subtotal * 0.05 : 0;
+                const total = subtotal + frete - descontoPix;
+                
+                subtotalValue.textContent = `R$ ${subtotal.toFixed(2)}`;
+                freteValue.textContent = `R$ ${frete.toFixed(2)}`;
+                descontoValue.textContent = `- R$ ${descontoPix.toFixed(2)}`;
+                totalValue.textContent = `R$ ${total.toFixed(2)}`;
+            }
+            
+            paymentMethods.forEach(method => {
+                method.addEventListener('change', atualizarResumo);
+            });
+            
+            checkoutBtn.addEventListener('click', function() {
+                const carrinho = JSON.parse(localStorage.getItem('carrinhoHypeWear')) || [];
+                
+                if (carrinho.length > 0) {
+                    alert('Compra finalizada com sucesso!');
+                    localStorage.removeItem('carrinhoHypeWear');
+                    carregarCarrinho();
+                    if (typeof window.atualizarContadorCarrinho === 'function') {
+                        window.atualizarContadorCarrinho();
+                    }
+                } else {
+                    alert('Seu carrinho está vazio!');
+                }
+            });
+            
+            carregarCarrinho();
+        });
+    </script>
 </body>
 </html>
